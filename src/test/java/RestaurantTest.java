@@ -6,6 +6,8 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.times;
@@ -67,6 +69,27 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+    @Test
+    public void get_order_value_for_1_item() {
+        List<String> itemNames = new ArrayList<>();
+        itemNames.add("Sweet corn soup");
+
+        assertEquals(119, restaurant.getOrderValue(itemNames));
+    }
+
+    @Test
+    public void get_order_value_for_2_items() {
+        List<String> itemNames = new ArrayList<>();
+        itemNames.add("Sweet corn soup");
+        itemNames.add("Vegetable lasagne");
+        int expectedOrderValue = 119 + 269;
+
+        assertEquals(expectedOrderValue, restaurant.getOrderValue(itemNames));
+    }
+
+    //<<<<<<<<<<<<<<<<<<<<<<<ORDER VALUE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     /**
      * Method to add restaurant details and menu to restaurant object
