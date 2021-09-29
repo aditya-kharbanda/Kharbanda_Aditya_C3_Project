@@ -65,4 +65,31 @@ public class Restaurant {
         return name;
     }
 
+    /**
+     * Implementing this method in restaurant to maintain single responsibility principle, of returning the price of
+     * only one given item
+     */
+    private int getPriceOfItem(final String itemName) {
+        for(Item item : menu) {
+            // could have used equals method as well
+            if(item.getName().compareTo(itemName) == 0) {
+                return item.getPrice();
+            }
+        }
+        return 0;
+    }
+
+    /**
+     * Method to get the order value
+     * @param itemNames is the list of item names
+     * @return total order value
+     */
+    public int getOrderValue(final List<String> itemNames) {
+        int orderValue = 0;
+        for(String itemName : itemNames) {
+            orderValue += this.getPriceOfItem(itemName);
+        }
+        return orderValue;
+    }
+
 }
